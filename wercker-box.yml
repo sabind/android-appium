@@ -1,0 +1,31 @@
+name: android-appium
+version: 0.0.1
+inherits: wercker/android@0.0.15
+type: main
+platform: ubuntu@12.04
+description: A box created for Android Automation with Appium
+keywords:
+  - android
+  - gradle
+  - appium
+script: |
+  echo 'deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu precise main' | sudo tee /etc/apt/sources.list.d/nodejs.list
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv C7917B12
+  sudo apt-get update
+  sudo apt-get install build-essential nodejs curl wget libfreetype6-dev libfontconfig1-dev xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
+  sleep 5
+
+  sudo apt-get install git
+  type git || { echo "Meteorite not found after installation! Terminating..."; exit 1; }
+
+  curl -L https://get.rvm.io | bash -s stable
+  source /home/ubuntu/.bash_profile
+  rvm install 2.0.0
+  ruby -v
+  rvmsudo gem install cucumber --no-rdoc --no-ri
+  rvmsudo gem install selenium-webdriver --no-rdoc --no-ri
+  rvmsudo gem install rspec --no-rdoc --no-ri
+  rvmsudo gem install launchy --no-rdoc --no-ri
+  rvmsudo gem install appium-console --no-rdoc --no-ri
+
+  sudo npm install -g appium
