@@ -26,6 +26,6 @@ script: |
   rvmsudo gem install selenium-webdriver --no-rdoc --no-ri
   rvmsudo gem install rspec --no-rdoc --no-ri
   rvmsudo gem install launchy --no-rdoc --no-ri
-  rvmsudo gem install appium-console --no-rdoc --no-ri
+  rvmsudo gem install appium_console --no-rdoc --no-ri
 
   sudo npm install -g appium
