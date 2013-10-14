@@ -1,5 +1,5 @@
 name: android-appium
-version: 0.0.1
+version: 0.0.2
 inherits: wercker/android@0.0.15
 type: main
 platform: ubuntu@12.04
@@ -27,5 +27,8 @@ script: |
   rvmsudo gem install rspec --no-rdoc --no-ri
   rvmsudo gem install launchy --no-rdoc --no-ri
   rvmsudo gem install appium_console --no-rdoc --no-ri
+
+  # install system image
+  android update sdk --no-ui --all --filter "sysimg-18, sysimg-17"
 
   sudo npm install -g appium
