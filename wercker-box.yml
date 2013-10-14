@@ -1,13 +1,14 @@
 name: android-appium
-version: 0.0.3
+version: 0.0.4
 inherits: wercker/android@0.0.15
 type: main
 platform: ubuntu@12.04
-description: A box created for Android Automation with Appium
+description: A box created for Android Automation with Appium using x86 Hardware Accelerated Emulator (HAXM)
 keywords:
   - android
   - gradle
   - appium
+  - HAXM Emulator
 script: |
   echo 'deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu precise main' | sudo tee /etc/apt/sources.list.d/nodejs.list
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv C7917B12
@@ -31,5 +32,10 @@ script: |
   # install system image
   expect -f /pipeline/build/android-update.exp "$ANDROID_UPDATE_FILTER"
   expect -f /pipeline/build/android-update.exp "sysimg-18"
+
+  #install hardware accelerated emulator
+  wget http://download.testobject.org/dev/android_ics_x86_goldfish.tar.gz
+  tar -zxvf android_ics_x86_goldfish.tar.gz -C $ANDROID_HOME
+  sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
 
   sudo npm install -g appium
