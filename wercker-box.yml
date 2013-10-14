@@ -29,6 +29,6 @@ script: |
   rvmsudo gem install appium_console --no-rdoc --no-ri
 
   # install system image
-  android update sdk --no-ui --all --filter "sysimg-18, sysimg-17"
-
+  expect -f /pipeline/build/android-update.exp "$ANDROID_UPDATE_FILTER"
+  
   sudo npm install -g appium
