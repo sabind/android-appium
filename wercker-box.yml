@@ -30,6 +30,6 @@ script: |
 
   # install system image
   expect -f /pipeline/build/android-update.exp "$ANDROID_UPDATE_FILTER"
-  expect -f /pipeline/build/android-update.exp "sysimg-18, sysimg-17"
+  expect -f /pipeline/build/android-update.exp "sysimg-18"
 
   sudo npm install -g appium
