@@ -1,5 +1,5 @@
 name: android-appium
-version: 0.0.2
+version: 0.0.3
 inherits: wercker/android@0.0.15
 type: main
 platform: ubuntu@12.04
